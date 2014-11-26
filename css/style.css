@@ -406,6 +406,7 @@ img {
   padding-top: 50px;
   -webkit-transition: all .3s;
           transition: all .3s;
+  background: #ffffff;
 }
 .bottom-switcher .item-demo-iframe {
   padding-top: 0;
@@ -534,6 +535,7 @@ img {
   padding: 2px 5px;
   margin-left: 10px;
   font-size: 10px;
+  text-transform: uppercase;
   color: #ffffff;
   -webkit-transition: all 0.25s ease-in-out;
           transition: all 0.25s ease-in-out;
@@ -651,6 +653,7 @@ img {
   padding: 0 5px;
   font-size: 10px;
   color: #ffffff;
+  text-transform: uppercase;
   -webkit-transition: all 0.25s ease-in-out;
           transition: all 0.25s ease-in-out;
 }
