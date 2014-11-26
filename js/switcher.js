@@ -199,6 +199,8 @@ $carouselItems.find('.item').on('click', function () {
       window.history.pushState({id: $currentItem}, '', '?item=' + $currentItem);
 
       document.title = $items[$currentItem].name + ' ' + $items[$currentItem].tag + ' - ' + $('.switcher-bar .logo').attr('title');
+
+      toggleViewportButtons();
     } else {
       window.location.href = '?item=' + $currentItem;
     }

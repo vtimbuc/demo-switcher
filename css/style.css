@@ -526,10 +526,12 @@ img {
   font-weight: 500;
 }
 .switcher-bar .items-toggle-btn span {
+  position: relative;
+  top: -1px;
   background: #82b440;
   border: 1px solid #74a139;
   border-radius: 3px;
-  padding: 0 3px;
+  padding: 2px 5px;
   margin-left: 10px;
   font-size: 10px;
   color: #ffffff;
