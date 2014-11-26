@@ -192,6 +192,8 @@ $carouselItems.find('.item').on('click', function () {
     if (hasPushState) {
       $itemDemoIframe.attr('src', $items[$currentItem].url);
 
+      $itemDemoIframe.css('width', '100%');
+
       $('.switcher-carousel').removeClass('active');
 
       $productsToggleBtn.html($items[$currentItem].name + '<span>' + $items[$currentItem].tag + '</span>');
