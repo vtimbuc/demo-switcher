@@ -1,0 +1,24 @@
+@switcher-height: 50px;
+
+@primary-color: #82b440;
+@background-color: #232323;
+@text-color: #ffffff;
+
+@line-height: 24px;
+@font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-size: 14px;
+
+.clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.transition() {
+  transition: all .25s ease-in-out;
+}
