@@ -2,9 +2,18 @@
 
 "use strict";
 
-var $body = $('body');
-// var $head = $('head');
-var hasPushState = !!(window.history && history.pushState);
+// Variables
+// ---------------------------------------------------------
+var
+// $body = $('body'),
+// $head = $('head'),
+
+$itemDemoIframe = $('.item-demo-iframe'),
+$productsToggleBtn = $('.items-toggle-btn'),
+$viewports = $('.viewports'),
+$carouselItems = $('.switcher-carousel .carousel-wrapper'),
+
+hasPushState = !!(window.history && history.pushState);
 
 
 
@@ -22,15 +31,15 @@ var hasPushState = !!(window.history && history.pushState);
 
 // Touch
 // ---------------------------------------------------------
-var dragging = false;
+// var dragging = false;
 
-$body.on('touchmove', function() {
-  dragging = true;
-});
+// $body.on('touchmove', function() {
+//   dragging = true;
+// });
 
-$body.on('touchstart', function() {
-  dragging = false;
-});
+// $body.on('touchstart', function() {
+//   dragging = false;
+// });
 
 
 
@@ -60,13 +69,15 @@ if (!($currentItem in $items) || $currentItem === '') {
 
 
 
-// Load Iframe
+// Toggle Viewport Buttons
 // ---------------------------------------------------------
-var $itemDemoIframe = $('.item-demo-iframe');
-
-$itemDemoIframe.attr('src', $items[$currentItem].url);
-
-document.title = $items[$currentItem].name + ' ' + $items[$currentItem].tag + ' - ' + $('.switcher-bar .logo').attr('title');
+function toggleViewportButtons() {
+  if ('undefined' !== typeof $items[$currentItem].responsive && $items[$currentItem].responsive === false ) {
+    $viewports.addClass('hidden');
+  } else {
+    $viewports.removeClass('hidden');
+  }
+}
 
 
 
@@ -94,14 +105,22 @@ $('.buy-now-btn').on('click', function () {
 
 
 
+// Carousel Toggle
+// ---------------------------------------------------------
+$productsToggleBtn.on('click', function (event) {
+  event.preventDefault();
+
+  $('.switcher-carousel').toggleClass('active');
+});
+
+
+
 // Viewport Buttons
 // ---------------------------------------------------------
-var $viewports = $('.viewports');
-
 $viewports.each(function () {
   var $this = $(this);
 
-  $this.find('li > a').on('click', function (event) {
+  $this.on('click', 'li > a', function (event) {
     var $this = $(this),
         size = $this.data('size');
 
@@ -116,35 +135,11 @@ $viewports.each(function () {
 
 
 
-// Toggle Viewport Buttons
-// ---------------------------------------------------------
-function toggleViewportButtons() {
-
-  if ('undefined' !== typeof $items[$currentItem].responsive && $items[$currentItem].responsive === false ) {
-    $viewports.addClass('hidden');
-  } else {
-    $viewports.removeClass('hidden');
-  }
-
-}
-
-toggleViewportButtons();
-
-
-
-// Set Current Item Name
-// ---------------------------------------------------------
-var $productsToggleBtn = $('.items-toggle-btn');
-
-$productsToggleBtn.html($items[$currentItem].name + '<span>' + $items[$currentItem].tag + '</span>');
-
-
-
 // Add Carousel Items
 // ---------------------------------------------------------
-var $carouselItems = $('.switcher-carousel .carousel-wrapper'), tooltip;
-
 $.each($items, function(key, object) {
+  var tooltip;
+
   if ('tooltip' in object) {
     tooltip = 'title="' + object.tooltip.replace( /"/g, '\'' ) + '"';
   }
@@ -160,8 +155,28 @@ $.each($items, function(key, object) {
 
 
 
-// Load Carousel
+// Load demo function
 // ---------------------------------------------------------
+function loadItemDemo() {
+  // Load Iframe
+  $itemDemoIframe.attr('src', $items[$currentItem].url);
+
+  // Set Document Title
+  document.title = $items[$currentItem].name + ' ' + $items[$currentItem].tag + ' - ' + $('.switcher-bar .logo').attr('title');
+
+  // Set current item title + tag
+  $productsToggleBtn.html($items[$currentItem].name + '<span>' + $items[$currentItem].tag + '</span>');
+
+  // Show/Hide Viewport Buttons
+  toggleViewportButtons();
+}
+
+
+
+// On Load
+// ---------------------------------------------------------
+loadItemDemo();
+
 $carouselItems.cycle({
   slides: '> a',
   fx: 'carousel',
@@ -173,52 +188,26 @@ $carouselItems.cycle({
 
 
 
-// Carousel Toggle
-// ---------------------------------------------------------
-$productsToggleBtn.on('click', function (event) {
-  event.preventDefault();
-
-  $('.switcher-carousel').toggleClass('active');
-});
-
-
-
-// Select Item
+// Select Item from Carousel
 // ---------------------------------------------------------
 $carouselItems.find('.item').on('click', function () {
   $currentItem = $(this).data('id');
 
   if ($currentItem in $items) {
     if (hasPushState) {
-      $itemDemoIframe.attr('src', $items[$currentItem].url);
+      loadItemDemo();
 
       $itemDemoIframe.css('width', '100%');
 
       $('.switcher-carousel').removeClass('active');
 
-      $productsToggleBtn.html($items[$currentItem].name + '<span>' + $items[$currentItem].tag + '</span>');
-
-      window.history.pushState({id: $currentItem}, '', '?item=' + $currentItem);
-
-      document.title = $items[$currentItem].name + ' ' + $items[$currentItem].tag + ' - ' + $('.switcher-bar .logo').attr('title');
-
-      toggleViewportButtons();
+      history.pushState({id: $currentItem}, '', '?item=' + $currentItem);
     } else {
-      window.location.href = '?item=' + $currentItem;
+      top.location.href = '?item=' + $currentItem;
     }
   }
 
   return false;
 });
-
-
-
-// Reload history
-// ---------------------------------------------------------
-window.onpopstate = function(event) {
-  if (event && event.state) {
-    location.reload();
-  }
-};
 
 }(jQuery));

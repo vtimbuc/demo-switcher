@@ -27,8 +27,27 @@
     font-size: round(@font-size * 1.285);
     letter-spacing: 1px;
 
+    img {
+      display: block;
+      width: auto;
+      height: @switcher-height - 20;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      .transition();
+    }
+
     &:hover {
       color: @primary-color;
+
+      img {
+        opacity: .75;
+      }
+    }
+
+    @media (max-width: @screen-xs-max) {
+      & {
+        border-right: 0;
+      }
     }
   }
 
@@ -48,6 +67,18 @@
       font-size: @font-size;
       color: @text-color;
       margin-right: 15px;
+    }
+
+    @media (max-width: @screen-sm-max) {
+      & {
+        span {
+          display: none;
+        }
+
+        .fa {
+          margin-right: 0;
+        }
+      }
     }
   }
 
@@ -73,6 +104,12 @@
 
       .fa {
         margin-right: 10px;
+      }
+    }
+
+    @media (max-width: @screen-xs-max) {
+      & {
+        border-left: 0;
       }
     }
   }
@@ -115,6 +152,12 @@
         }
       }
     }
+
+    @media (max-width: @screen-xs-max) {
+      & {
+        display: none;
+      }
+    }
   }
 
   .items-toggle-btn {
@@ -140,9 +183,10 @@
 
     &:after {
       position: relative;
-      top: 1px;
+      top: -1px;
       font-family: 'FontAwesome';
-      content: '\f0d7';
+      font-size: 12px;
+      content: '\f078';
       margin-left: 15px;
     }
 
@@ -152,7 +196,13 @@
 
     .bottom-switcher & {
       &:after {
-        content: '\f0d8';
+        content: '\f077';
+      }
+    }
+
+    @media (max-width: @screen-xs-max) {
+      & {
+        display: none;
       }
     }
   }

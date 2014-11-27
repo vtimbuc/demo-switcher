@@ -447,8 +447,25 @@ img {
   font-size: 18px;
   letter-spacing: 1px;
 }
+.switcher-bar .logo img {
+  display: block;
+  width: auto;
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  -webkit-transition: all 0.25s ease-in-out;
+          transition: all 0.25s ease-in-out;
+}
 .switcher-bar .logo:hover {
   color: #82b440;
+}
+.switcher-bar .logo:hover img {
+  opacity: .75;
+}
+@media (max-width: 767px) {
+  .switcher-bar .logo {
+    border-right: 0;
+  }
 }
 .switcher-bar .remove-frame-btn {
   float: right;
@@ -465,6 +482,14 @@ img {
   font-size: 14px;
   color: #ffffff;
   margin-right: 15px;
+}
+@media (max-width: 991px) {
+  .switcher-bar .remove-frame-btn span {
+    display: none;
+  }
+  .switcher-bar .remove-frame-btn .fa {
+    margin-right: 0;
+  }
 }
 .switcher-bar .buy-now {
   float: right;
@@ -487,6 +512,11 @@ img {
 }
 .switcher-bar .buy-now .buy-now-btn .fa {
   margin-right: 10px;
+}
+@media (max-width: 767px) {
+  .switcher-bar .buy-now {
+    border-left: 0;
+  }
 }
 .switcher-bar .viewports {
   float: right;
@@ -519,6 +549,11 @@ img {
   color: #82b440;
   cursor: default;
 }
+@media (max-width: 767px) {
+  .switcher-bar .viewports {
+    display: none;
+  }
+}
 .switcher-bar .items-toggle-btn {
   float: left;
   padding: 1px 20px 0;
@@ -542,16 +577,22 @@ img {
 }
 .switcher-bar .items-toggle-btn:after {
   position: relative;
-  top: 1px;
+  top: -1px;
   font-family: 'FontAwesome';
-  content: '\f0d7';
+  font-size: 12px;
+  content: '\f078';
   margin-left: 15px;
 }
 .switcher-bar .items-toggle-btn:hover {
   color: #82b440;
 }
 .bottom-switcher .switcher-bar .items-toggle-btn:after {
-  content: '\f0d8';
+  content: '\f077';
+}
+@media (max-width: 767px) {
+  .switcher-bar .items-toggle-btn {
+    display: none;
+  }
 }
 .switcher-carousel {
   position: fixed;
@@ -656,5 +697,10 @@ img {
   text-transform: uppercase;
   -webkit-transition: all 0.25s ease-in-out;
           transition: all 0.25s ease-in-out;
+}
+@media (max-width: 767px) {
+  .switcher-carousel {
+    display: none;
+  }
 }
 /*# sourceMappingURL=style.css.map */
