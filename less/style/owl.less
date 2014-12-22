@@ -1,0 +1,37 @@
+.owl-carousel {
+  display: none;
+  position: relative;
+  width: 100%;
+  touch-action: pan-y;
+
+  .owl-wrapper {
+    .clearfix();
+    display: none;
+    position: relative;
+    transform: translate3d(0px, 0px, 0px);
+  }
+
+  .owl-wrapper-outer {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    &.autoHeight {
+      transition: height .5s ease-in-out;
+    }
+  }
+
+  .owl-item {
+    float: left;
+  }
+
+  .owl-controls {
+    user-select: none;
+  }
+
+  .owl-wrapper,
+  .owl-item {
+    backface-visibility: hidden;
+    transform: translate3d(0,0,0);
+  }
+}

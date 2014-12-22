@@ -177,13 +177,16 @@ function loadItemDemo() {
 // ---------------------------------------------------------
 loadItemDemo();
 
-$carouselItems.cycle({
-  slides: '> a',
-  fx: 'carousel',
-  timeout: 0,
-  allowWrap: false,
-  prev: '#switcher-carousel-prev',
-  next: '#switcher-carousel-next'
+$carouselItems.owlCarousel({
+  items: 4,
+  itemsTablet: [1199, 3],
+  itemsTabletSmall: [991, 2],
+  mouseDrag: false,
+  pagination: false,
+  navigation: true,
+  navigationText: ['<i class="fa fa-chevron-left">', '<i class="fa fa-chevron-right">'],
+  slideSpeed: 500,
+  rewindNav: false
 });
 
 
