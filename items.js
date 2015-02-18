@@ -12,7 +12,8 @@ $items = {
     img       : '//0.s3.envato.com/files/109941662/screenshots/00_preview.__large_preview.jpg',
     url       : '//188.226.173.21/bingo/',
     purchase  : '//themeforest.net/item/bingo-auction-wordpress-theme/9263645?ref=uouapps',
-    tooltip   : 'Build Your Own Auction Site With Wordpress'
+    tooltip   : 'Build Your Own Auction Site With Wordpress',
+    responsive: false // To disable responsiveness buttons
   },
 
   casa_wordpress: {
