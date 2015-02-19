@@ -9,37 +9,12 @@ var
 // $head = $('head'),
 
 $itemDemoIframe = $('.item-demo-iframe'),
+$itemDemoContainer = $('.item-demo-wrapper'),
 $productsToggleBtn = $('.items-toggle-btn'),
 $viewports = $('.viewports'),
 $carouselItems = $('.switcher-carousel .carousel-wrapper'),
 
 hasPushState = !!(window.history && history.pushState);
-
-
-
-// Mediaqueries
-// ---------------------------------------------------------
-// var XS = window.matchMedia('(max-width:767px)');
-// var SM = window.matchMedia('(min-width:768px) and (max-width:991px)');
-// var MD = window.matchMedia('(min-width:992px) and (max-width:1199px)');
-// var LG = window.matchMedia('(min-width:1200px)');
-// var XXS = window.matchMedia('(max-width:480px)');
-// var SM_XS = window.matchMedia('(max-width:991px)');
-// var LG_MD = window.matchMedia('(min-width:992px)');
-
-
-
-// Touch
-// ---------------------------------------------------------
-// var dragging = false;
-
-// $body.on('touchmove', function() {
-//   dragging = true;
-// });
-
-// $body.on('touchstart', function() {
-//   dragging = false;
-// });
 
 
 
@@ -127,7 +102,7 @@ $viewports.each(function () {
     event.preventDefault();
 
     if (size) {
-      $itemDemoIframe.css('width', size);
+      $itemDemoContainer.css('width', size);
       $this.parent('li').addClass('active').siblings('li').removeClass('active');
     }
   });
@@ -200,7 +175,7 @@ $carouselItems.find('.item').on('click', function () {
     if (hasPushState) {
       loadItemDemo();
 
-      $itemDemoIframe.css('width', '100%');
+      $itemDemoContainer.css('width', '100%');
 
       $('.switcher-carousel').removeClass('active');
 
